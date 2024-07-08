@@ -44,36 +44,55 @@ function App() {
   }, [length, numberAllowed, charsAllowed])
 
   return (
-    <>
-      <h1>Password Generator</h1>
-      <input type="text" value={password} readOnly placeholder="Password" ref={passwordRef} />
-      <button onClick={copyPasswordToClipboard}>Copy</button>
+    <div className="text-2xl flex gap-5 flex-col w-full bg-red-600 justify-center items-center h-screen">
+      <h1 className="text-5xl">Password Generator</h1>
       <div>
         <input
-          type="range"
-          min={6}
-          max={100}
-          value={length}
-          id="rg"
-          onChange={(e) => setLength(e.target.value)}
+          className="rounded-lg mr-3 p-2 text-blue-900"
+          type="text"
+          value={password}
+          readOnly
+          placeholder="Password"
+          ref={passwordRef}
         />
-        <label htmlFor="rg">Length: {length}</label>
-
-        <input
-          type="checkbox"
-          id="num"
-          onChange={() => setNumberAllowed(prev=>!prev)}
-        />
-
-        <label htmlFor="num">Numbers</label>
-        <input
-          type="checkbox"
-          id="char"
-          onChange={() => setCharsAllowed(prev=>!prev)}
-        />
-        <label htmlFor="char">Chars</label>
+        <button
+          onClick={copyPasswordToClipboard}
+          className="bg-blue-600 p-2 rounded-lg hover:bg-blue-800"
+        >
+          Copy
+        </button>
       </div>
-    </>
+      <div className="flex gap-3">
+        <div className="flex gap-1">
+          <input
+            type="range"
+            min={6}
+            max={100}
+            value={length}
+            id="rg"
+            onChange={(e) => setLength(e.target.value)}
+          />
+          <label htmlFor="rg">Length: {length}</label>
+        </div>
+        <div className="flex gap-1">
+          <input
+            type="checkbox"
+            id="num"
+            onChange={() => setNumberAllowed((prev) => !prev)}
+          />
+
+          <label htmlFor="num">Numbers</label>
+        </div>
+        <div className="flex gap-1">
+          <input
+            type="checkbox"
+            id="char"
+            onChange={() => setCharsAllowed((prev) => !prev)}
+          />
+          <label htmlFor="char">Chars</label>
+        </div>
+      </div>
+    </div>
   )
 }
 
